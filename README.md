@@ -8,3 +8,5 @@ Nakon kloniranja potrebno je :
 -   Generisati JWT secret `php artisan jwt:secret`
 -   Izvrsiti DB migracije `php artisan migrate`
 -   Generisati DB seedove (samo u okruzenju u kom je ovo potrebno) `php artisan db:seed`
+
+> Swagger dokumentacija za API je dostupna na endpoint-u `/api/documentation`
