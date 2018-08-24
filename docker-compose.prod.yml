@@ -1,0 +1,37 @@
+version: '2'
+services:
+
+  app:
+    image: veskor/laravel-app
+    working_dir: /var/www
+    volumes:
+      - /var/www/storage
+    env_file: '.env'
+    environment:
+      - "DB_HOST=database"
+      - "REDIS_HOST=cache"
+
+  web:
+    image: veskor/laravel-web
+    volumes:
+      - "${LE_DIR}:/etc/letsencrypt"
+    ports:
+      - 80:80
+      - 443:443
+
+  database:
+    image: mysql:5.6
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=homestead"
+      - "MYSQL_USER=homestead"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=secret"
+
+  # redis
+  cache:
+    image: redis:3.0-alpine
+
+volumes:
+  dbdata:
